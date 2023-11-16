@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <!-- Page title -->
+    <title>Hand gesture recognition</title>
+  </head>
+  <body>
+    <button id="webcamButton">enable webcam</button>
+    <div id="hgr_feed">
+      <video id="webcam_feed" autoplay playsinline></video>
+      <canvas id="output_canvas"></canvas>
+      <p id="gesture_output"></p>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

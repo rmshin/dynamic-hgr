@@ -1,0 +1,23 @@
+@import url(reset.css);
+
+#hgr_feed {
+  position: relative;
+}
+
+#webcam_feed {
+  display: block;
+  /* flip video feed */
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+}
+
+#output_canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* flip video feed */
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+}
