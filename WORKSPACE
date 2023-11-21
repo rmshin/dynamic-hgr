@@ -2,6 +2,19 @@ workspace(name = "dynamic_hgr")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
+# http_archive(
+#     name = "macos_opencv",
+#     strip_prefix = "opencv-3.4.10",
+#     urls = ["https://github.com/opencv/opencv/archive/3.4.10.tar.gz"],
+#     build_file = "@//third_party/opencv:BUILD",
+# )
+
+new_local_repository(
+    name = "macos_opencv",
+    build_file = "@//third_party/opencv:BUILD",
+    path = "/usr/local",
+)
+
 http_archive(
     name = "mediapipe",
     urls = ["https://github.com/google/mediapipe/archive/refs/tags/v0.10.8.tar.gz"],
@@ -9,7 +22,7 @@ http_archive(
     strip_prefix = "mediapipe-0.10.8",
 )
 
-# ABSL cpp library lts_2023_01_25.
+# ABSL cpp library lts_2023_08_02.
 http_archive(
     name = "com_google_absl",
     urls = [
