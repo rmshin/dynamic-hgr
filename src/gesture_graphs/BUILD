@@ -7,6 +7,7 @@ exports_files(glob([
 cc_library(
     name = "desktop_gesture_calculators",
     deps = [
+        "//src/gesture_graphs/calculators:landmarks_to_csv_calculator",
         "//src/gesture_graphs/subgraphs:overlay_renderer_cpu",
         "@mediapipe//mediapipe/graphs/hand_tracking:desktop_tflite_calculators",
     ]

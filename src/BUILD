@@ -22,7 +22,6 @@ cc_binary(
         "@mediapipe//mediapipe/framework/port:parse_text_proto",
         "@mediapipe//mediapipe/framework/port:status",
         "@mediapipe//mediapipe/util:resource_util",
-        "@com_google_absl//absl/flags:flag",
         "@com_google_absl//absl/flags:parse",
         "@com_google_absl//absl/log:absl_log",
     ],

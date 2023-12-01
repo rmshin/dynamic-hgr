@@ -6,6 +6,9 @@
 # CPU image. (ImageFrame)
 input_stream: "input_video"
 
+# Config for logging landmarks to csv.
+input_stream: "capture_mode"
+
 # CPU image. (ImageFrame)
 output_stream: "output_video"
 
@@ -30,6 +33,14 @@ node {
   output_stream: "PALM_DETECTIONS:multi_palm_detections"
   output_stream: "HAND_ROIS_FROM_LANDMARKS:multi_hand_rects"
   output_stream: "HAND_ROIS_FROM_PALM_DETECTIONS:multi_palm_rects"
+}
+
+# Save landmarks to csv on relevant key-press
+node {
+  calculator: "LandmarksToCsvCalculator"
+  input_stream: "NORM_LANDMARKS:landmarks"
+  input_stream: "HANDEDNESS:handedness"
+  input_stream: "CAPTURE_MODE:capture_mode"
 }
 
 # Subgraph that renders annotations and overlays them on top of the input
