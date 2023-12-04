@@ -1,0 +1,1 @@
+exports_files(srcs = ["gestures.txt", "gesture_classifier.pt"])

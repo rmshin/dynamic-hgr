@@ -35,15 +35,16 @@ constexpr char kRecordModeInputStream[] = "capture_mode";
 constexpr char kOutputStream[] = "output_video";
 constexpr char kWindowName[] = "MediaPipe";
 
-void set_capture_mode(int key, int *curr_mode, int *curr_num)
+void set_capture_mode(int key, int *curr_mode, int *curr_idx)
 {
+  // see models/gestures.txt for idx -> gesture mapping
   if ('0' <= key && key <= '9') // 0 - 9
   {
-    *curr_num = key - '0';
+    *curr_idx = key - '0';
   }
   else
   {
-    *curr_num = -1;
+    *curr_idx = -1;
     if (key == 'n') // no capture
     {
       *curr_mode = 0;

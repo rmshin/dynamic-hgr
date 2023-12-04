@@ -9,6 +9,8 @@ cc_binary(
         "@mediapipe//mediapipe/modules/hand_landmark:hand_landmark_full.tflite",
         "@mediapipe//mediapipe/modules/palm_detection:palm_detection_full.tflite",
         "@mediapipe//mediapipe/modules/hand_landmark:handedness.txt",
+        "//models:gesture_classifier.pt",
+        "//models:gestures.txt",
     ],
     deps = [
         "//src/gesture_graphs:desktop_gesture_calculators",

@@ -1,0 +1,9 @@
+name: hgr-classifier
+dependencies:
+  - python=3
+  - pip
+  # python libs
+  - pytest
+  - black
+  - ipython
+  - pytorch

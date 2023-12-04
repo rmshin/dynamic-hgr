@@ -28,7 +28,7 @@ public:
 
   absl::Status Open(mediapipe::CalculatorContext *cc) override
   {
-    csvFile.open("src/models/landmarks.csv", std::ios::app);
+    csvFile.open("models/landmarks.csv", std::ios::app);
     ABSL_CHECK(csvFile.is_open()) << "Error opening csv file.";
     return absl::OkStatus();
   }
