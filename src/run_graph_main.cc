@@ -44,17 +44,13 @@ void set_capture_mode(int key, int *curr_mode, int *curr_num)
   else
   {
     *curr_num = -1;
-    if (key == 'n')
+    if (key == 'n') // no capture
     {
       *curr_mode = 0;
     }
-    else if (key == 'k')
+    else if (key == 'k') // landmarks
     {
       *curr_mode = 1;
-    }
-    else if (key == 'h')
-    {
-      *curr_mode = 2;
     }
   }
 }
