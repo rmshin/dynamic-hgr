@@ -1,6 +1,6 @@
 # MediaPipe graph to render hand landmarks and some related debug information.
 
-type: "HandRendererSubgraph"
+type: "OverlayRendererSubgraph"
 
 # CPU image. (ImageFrame)
 input_stream: "IMAGE:input_image"
@@ -10,6 +10,8 @@ input_stream: "LANDMARKS:multi_hand_landmarks"
 # Handedness of the detected hand (i.e. is hand left or right).
 # (std::vector<ClassificationList>)
 input_stream: "HANDEDNESS:multi_handedness"
+# Detected gesture from landmarks (int)
+input_stream: "GESTURE:gesture"
 # Regions of interest calculated based on palm detections.
 # (std::vector<NormalizedRect>)
 input_stream: "NORM_RECTS:0:multi_palm_rects"

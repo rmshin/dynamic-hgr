@@ -43,14 +43,23 @@ node {
   input_stream: "CAPTURE_MODE:capture_mode"
 }
 
+# Run model inference to classify landmarks as gestures
+node {
+  calculator: "PtClassificationInferenceCalculator"
+  input_stream: "NORM_LANDMARKS:landmarks"
+  input_stream: "HANDEDNESS:handedness"
+  output_stream: "GESTURE:gesture"
+}
+
 # Subgraph that renders annotations and overlays them on top of the input
 # images (see hand_renderer_cpu.pbtxt).
 node {
-  calculator: "HandRendererSubgraph"
+  calculator: "OverlayRendererSubgraph"
   input_stream: "IMAGE:input_video"
   input_stream: "DETECTIONS:multi_palm_detections"
   input_stream: "LANDMARKS:landmarks"
   input_stream: "HANDEDNESS:handedness"
+  input_stream: "GESTURE:gesture"
   input_stream: "NORM_RECTS:0:multi_palm_rects"
   input_stream: "NORM_RECTS:1:multi_hand_rects"
   output_stream: "IMAGE:output_video"
