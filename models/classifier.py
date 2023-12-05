@@ -20,13 +20,13 @@ class GestureClassifier(nn.Module):
         )
 
     def forward(self, x):
-        return self.net(x)
-
-    def classify(self, x):
-        logits = self(x)
-        probs = nn.functional.softmax(logits, dim=-1)
-        classification = torch.argmax(probs)
-        return classification
+        if self.training:
+            return self.net(x)
+        else:
+            logits = self.net(x)
+            probs = nn.functional.softmax(logits, dim=-1)
+            classification = torch.argmax(probs)
+            return classification
 
 
 ### Training
@@ -67,16 +67,14 @@ elapsed = end - start
 hours = int(elapsed // 3600)
 minutes = int((elapsed % 3600) // 60)
 seconds = int(elapsed % 60)
-print(f"Total elapsed time: {hours:02d}:{minutes:02d}:{seconds:02d}")
+print(f"Total elapsed time: {hours:02d}:{minutes:02d}:{seconds:02d}\n")
 
 
 @torch.no_grad()
 def split_loss(split):
-    classifier.eval()
     x, y = {"train": (Xtr, Ytr), "val": (Xval, Yval)}[split]
     y_hat = classifier(x)
     loss = nn.functional.cross_entropy(y_hat, y)
-    classifier.train()
     print(split, loss.item())
 
 
@@ -85,5 +83,5 @@ split_loss("val")
 
 # export trained model to serialised format for C++ consumption
 # force model to run on cpu because mediapipe gpu support is linux-only
-script_module = torch.jit.script(classifier.to("cpu"))
+script_module = torch.jit.script(classifier.cpu())
 script_module.save("gesture_classifier.pt")

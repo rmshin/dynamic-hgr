@@ -17,6 +17,13 @@ new_local_repository(
 )
 
 http_archive(
+    name = "libtorch",
+    build_file = "@//third_party/libtorch:BUILD",
+    strip_prefix = "libtorch",
+    urls = ["https://download.pytorch.org/libtorch/cpu/libtorch-macos-2.1.1.zip"],
+)
+
+http_archive(
     name = "mediapipe",
     urls = ["https://github.com/google/mediapipe/archive/refs/tags/v0.10.8.tar.gz"],
     sha256 = "c4554f9f41192202263c19cc0f6e330b42f003bbfc5ce16ba727ab4c71ad6e5d",

@@ -98,7 +98,7 @@ private:
             int pos = offset + j;
             std::string landmark_str =
                 absl::StrFormat("%.6f,%.6f,%.6f", landmark.x(), landmark.y(), landmark.z());
-            landmarks_arr[pos++] = landmark_str;
+            landmarks_arr[pos] = landmark_str;
           }
         }
         std::string landmarks_str = absl::StrJoin(landmarks_arr, ",");
