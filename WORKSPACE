@@ -20,7 +20,8 @@ http_archive(
     name = "libtorch",
     build_file = "@//third_party/libtorch:BUILD",
     strip_prefix = "libtorch",
-    urls = ["https://download.pytorch.org/libtorch/cpu/libtorch-macos-2.1.1.zip"],
+    # urls = ["https://download.pytorch.org/libtorch/cpu/libtorch-macos-2.1.1.zip"], # intel macs
+    urls = ["https://github.com/mlverse/libtorch-mac-m1/releases/download/LibTorchOpenMP/libtorch-v2.1.0.zip"], # MX macs
 )
 
 http_archive(
