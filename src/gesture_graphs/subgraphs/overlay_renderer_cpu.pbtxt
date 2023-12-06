@@ -12,9 +12,9 @@ input_stream: "LANDMARKS:multi_hand_landmarks"
 input_stream: "HANDEDNESS:multi_handedness"
 # Detected gesture from landmarks (int)
 input_stream: "GESTURE:gesture"
-# Regions of interest calculated based on palm detections.
+# Regions of interest calculated based on hand landmarks.
 # (std::vector<NormalizedRect>)
-input_stream: "NORM_RECTS:multi_palm_rects"
+input_stream: "NORM_RECTS:multi_hand_rects"
 
 # Updated CPU image. (ImageFrame)
 output_stream: "IMAGE:output_image"
@@ -22,8 +22,8 @@ output_stream: "IMAGE:output_image"
 # Converts normalized rects to drawing primitives for annotation overlay.
 node {
   calculator: "RectToRenderDataCalculator"
-  input_stream: "NORM_RECTS:multi_palm_rects"
-  output_stream: "RENDER_DATA:multi_palm_rects_render_data"
+  input_stream: "NORM_RECTS:multi_hand_rects"
+  output_stream: "RENDER_DATA:multi_hand_rects_render_data"
   node_options: {
     [type.googleapis.com/mediapipe.RectToRenderDataCalculatorOptions] {
       filled: false
@@ -177,7 +177,7 @@ node {
   calculator: "AnnotationOverlayCalculator"
   input_stream: "IMAGE:input_image"
   input_stream: "gesture_render_data"
-  input_stream: "multi_palm_rects_render_data"
+  input_stream: "multi_hand_rects_render_data"
   input_stream: "handedness_render_data"
   input_stream: "VECTOR:0:multi_hand_landmarks_render_data"
   output_stream: "IMAGE:output_image"

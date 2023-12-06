@@ -30,7 +30,7 @@ node {
   input_side_packet: "NUM_HANDS:num_hands"
   output_stream: "LANDMARKS:landmarks"
   output_stream: "HANDEDNESS:handedness"
-  output_stream: "HAND_ROIS_FROM_PALM_DETECTIONS:multi_palm_rects"
+  output_stream: "HAND_ROIS_FROM_LANDMARKS:multi_hand_rects"
 }
 
 # Save landmarks to csv on relevant key-press
@@ -58,6 +58,6 @@ node {
   input_stream: "LANDMARKS:landmarks"
   input_stream: "HANDEDNESS:handedness"
   input_stream: "GESTURE:gesture"
-  input_stream: "NORM_RECTS:multi_palm_rects"
+  input_stream: "NORM_RECTS:multi_hand_rects"
   output_stream: "IMAGE:output_video"
 }
