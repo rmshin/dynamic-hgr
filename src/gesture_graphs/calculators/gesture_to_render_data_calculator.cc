@@ -76,7 +76,6 @@ absl::Status GestureToRenderDataCalculator::Process(mediapipe::CalculatorContext
         text->set_baseline(80 + 25 * idx);
     }
 
-    // text->set_font_face(options_.font_face());
     cc->Outputs()
         .Tag(kRenderDataTag)
         .AddPacket(mediapipe::MakePacket<mediapipe::RenderData>(render_data).At(cc->InputTimestamp()));
