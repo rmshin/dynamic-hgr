@@ -20,6 +20,7 @@ public:
 
   absl::Status Open(mediapipe::CalculatorContext *cc) override
   {
+    cc->SetOffset(mediapipe::TimestampDiff(0));
     // deserialize the ScriptModule classifier from file
     model = torch::jit::load("models/gesture_classifier.pt");
     model.eval();
@@ -42,7 +43,7 @@ public:
     std::vector<torch::jit::IValue> inputs;
     inputs.push_back(landmarks_tensor.unsqueeze(0));
 
-    // execute the model and turn its output into a tensor (`run_method` returns torch::jit::IValue)
+    // execute the model and turn its output into a tensor
     auto output = model.forward(inputs).toTensor();
     int classification = output.item<int>();
     cc->Outputs()

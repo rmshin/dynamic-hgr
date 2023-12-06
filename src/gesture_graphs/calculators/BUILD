@@ -27,3 +27,15 @@ cc_library(
     ],
     alwayslink = 1,
 )
+
+cc_library(
+    name = "gesture_to_render_data_calculator",
+    srcs = ["gesture_to_render_data_calculator.cc"],
+    deps = [
+        "@mediapipe//mediapipe/framework:calculator_framework",
+        "@mediapipe//mediapipe/framework/port:status",
+        "@mediapipe//mediapipe/util:render_data_cc_proto",
+        "@com_google_absl//absl/log:absl_check",
+    ],
+    alwayslink = 1,
+)
