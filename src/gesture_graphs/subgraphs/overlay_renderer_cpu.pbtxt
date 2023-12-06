@@ -110,14 +110,14 @@ node {
   output_stream: "ITERABLE:multi_hand_landmarks_render_data"
 }
 
-# Don't render handedness if there are more than one handedness reported.
+# Don't render handedness if there are more than two handedness reported.
 node {
   calculator: "ClassificationListVectorHasMinSizeCalculator"
   input_stream: "ITERABLE:multi_handedness"
   output_stream: "disallow_handedness_rendering"
   node_options: {
     [type.googleapis.com/mediapipe.CollectionHasMinSizeCalculatorOptions] {
-      min_size: 2
+      min_size: 3
     }
   }
 }
@@ -135,39 +135,9 @@ node {
 }
 
 node {
-  calculator: "SplitClassificationListVectorCalculator"
-  input_stream: "allowed_multi_handedness"
-  output_stream: "handedness"
-  node_options: {
-    [type.googleapis.com/mediapipe.SplitVectorCalculatorOptions] {
-      ranges: { begin: 0 end: 1 }
-      element_only: true
-    }
-  }
-}
-
-# Converts classification to drawing primitives for annotation overlay.
-node {
-  calculator: "LabelsToRenderDataCalculator"
-  input_stream: "CLASSIFICATIONS:handedness"
-  output_stream: "RENDER_DATA:handedness_render_data"
-  node_options: {
-    [type.googleapis.com/mediapipe.LabelsToRenderDataCalculatorOptions]: {
-      color { r: 255 g: 0 b: 0 }
-      thickness: 2.0
-      font_height_px: 20
-      horizontal_offset_px: 50
-      vertical_offset_px: 80
-
-      max_num_labels: 1
-      location: TOP_LEFT
-    }
-  }
-}
-
-node {
   calculator: "GestureToRenderDataCalculator"
   input_stream: "GESTURE:gesture"
+  input_stream: "HANDEDNESS:allowed_multi_handedness"
   output_stream: "RENDER_DATA:gesture_render_data"
 }
 
@@ -178,7 +148,6 @@ node {
   input_stream: "IMAGE:input_image"
   input_stream: "gesture_render_data"
   input_stream: "multi_hand_rects_render_data"
-  input_stream: "handedness_render_data"
   input_stream: "VECTOR:0:multi_hand_landmarks_render_data"
   output_stream: "IMAGE:output_image"
 }

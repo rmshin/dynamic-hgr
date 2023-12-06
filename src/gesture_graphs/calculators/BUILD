@@ -33,6 +33,7 @@ cc_library(
     srcs = ["gesture_to_render_data_calculator.cc"],
     deps = [
         "@mediapipe//mediapipe/framework:calculator_framework",
+        "@mediapipe//mediapipe/framework/formats:classification_cc_proto",
         "@mediapipe//mediapipe/framework/port:status",
         "@mediapipe//mediapipe/util:render_data_cc_proto",
         "@com_google_absl//absl/log:absl_check",
