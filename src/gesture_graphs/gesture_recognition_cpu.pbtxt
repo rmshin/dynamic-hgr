@@ -49,7 +49,6 @@ node {
   output_stream: "GESTURE:gesture"
 }
 
-# TODO: update implementation of this render graph
 # Subgraph that renders annotations and overlays them on top of the input
 # images (see hand_renderer_cpu.pbtxt).
 node {
@@ -60,4 +59,24 @@ node {
   input_stream: "GESTURE:gesture"
   input_stream: "NORM_RECTS:multi_hand_rects"
   output_stream: "IMAGE:output_video"
+}
+
+node {
+  calculator: "HandMovementToMouseCalculator"
+  input_stream: "NORM_LANDMARKS:landmarks"
+  input_stream: "HANDEDNESS:handedness"
+  input_stream: "GESTURE:gesture"
+  input_stream: "PREV_LANDMARK_XY:prev_landmark_xy"
+  output_stream: "LANDMARK_XY:landmark_xy"
+}
+
+node {
+  calculator: "PreviousLoopbackCalculator"
+  input_stream: "MAIN:landmarks"
+  input_stream: "LOOP:landmark_xy"
+  input_stream_info: { 
+    tag_index: 'LOOP' 
+    back_edge: true
+  }
+  output_stream: "PREV_LOOP:prev_landmark_xy"
 }
