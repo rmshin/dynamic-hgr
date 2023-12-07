@@ -40,3 +40,17 @@ cc_library(
     ],
     alwayslink = 1,
 )
+
+cc_library(
+    name = "hand_movement_to_mouse_calculator",
+    srcs = ["hand_movement_to_mouse_calculator.cc", "landmark_xy.h"],
+    deps = [
+        "//src/mouse:mouse_controller",
+        "@mediapipe//mediapipe/framework:calculator_framework",
+        "@mediapipe//mediapipe/framework/formats:classification_cc_proto",
+        "@mediapipe//mediapipe/framework/formats:landmark_cc_proto",
+    ],
+    copts = ["-ObjC++"],
+    linkopts = ["-framework CoreGraphics"],
+    alwayslink = 1,
+)
