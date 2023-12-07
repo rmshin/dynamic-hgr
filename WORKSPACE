@@ -22,7 +22,7 @@ http_archive(
     strip_prefix = "libtorch",
     # urls = ["https://download.pytorch.org/libtorch/cpu/libtorch-macos-2.1.1.zip"], # intel macs
     urls = ["https://github.com/mlverse/libtorch-mac-m1/releases/download/LibTorchOpenMP/libtorch-v2.1.0.zip"], # MX macs
-    sha256 = "c99d3017f0cfef9a5ec1d05623efb2c93a01928c0ea6d5fe2262bc8a8558c09d",
+    sha256 = "9e2fa4cd9502f3d7c5c300c54bfbac763b4d3a5a97c3124b6e29e943f2d8e2b8",
 )
 
 http_archive(
