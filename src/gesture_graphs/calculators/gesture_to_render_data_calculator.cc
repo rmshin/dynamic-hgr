@@ -54,26 +54,29 @@ absl::Status GestureToRenderDataCalculator::Open(mediapipe::CalculatorContext *c
 
 absl::Status GestureToRenderDataCalculator::Process(mediapipe::CalculatorContext *cc)
 {
-    const auto &handedness = cc->Inputs().Tag(kHandednessTag).Get<std::vector<mediapipe::ClassificationList>>();
-    int gesture = cc->Inputs().Tag(kGestureTag).Get<int>();
-    std::string gesture_label = gesture < gesture_labels.size() ? gesture_labels[gesture] : "Unknown";
-
     mediapipe::RenderData render_data;
-    for (auto &hand : handedness)
+    if (!cc->Inputs().Tag(kHandednessTag).IsEmpty())
     {
-        size_t idx = std::distance(&handedness[0], &hand);
-        auto *label_annotation = render_data.add_render_annotations();
-        label_annotation->set_thickness(2.0);
-        label_annotation->mutable_color()->set_r(255);
-        label_annotation->mutable_color()->set_g(0);
-        label_annotation->mutable_color()->set_b(0);
+        const auto &handedness = cc->Inputs().Tag(kHandednessTag).Get<std::vector<mediapipe::ClassificationList>>();
+        int gesture = cc->Inputs().Tag(kGestureTag).Get<int>();
+        std::string gesture_label = gesture < gesture_labels.size() ? gesture_labels[gesture] : "Unknown";
 
-        auto *text = label_annotation->mutable_text();
-        std::string display_text = hand.classification(0).label() + ": " + gesture_label;
-        text->set_display_text(display_text);
-        text->set_font_height(20);
-        text->set_left(50);
-        text->set_baseline(80 + 25 * idx);
+        for (auto &hand : handedness)
+        {
+            size_t idx = std::distance(&handedness[0], &hand);
+            auto *label_annotation = render_data.add_render_annotations();
+            label_annotation->set_thickness(2.0);
+            label_annotation->mutable_color()->set_r(255);
+            label_annotation->mutable_color()->set_g(0);
+            label_annotation->mutable_color()->set_b(0);
+
+            auto *text = label_annotation->mutable_text();
+            std::string display_text = hand.classification(0).label() + ": " + gesture_label;
+            text->set_display_text(display_text);
+            text->set_font_height(20);
+            text->set_left(50);
+            text->set_baseline(80 + 25 * idx);
+        }
     }
 
     cc->Outputs()
