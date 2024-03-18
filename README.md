@@ -26,6 +26,7 @@ Notes:
 
 ### To-dos
 
+- [ ] Migrate bazel external dependencies to use bazel modules and switch to bazel 7.X
 - [ ] Improve classifier model stability by collecting a larger dataset or transfer learning from another pre-trained model
 - [ ] Update classsifer model training code to save & load from checkpoints to avoid full re-training every time
 - [ ] Train additional gestures to support a larger variety of cursor actions (left/right/double click, scroll, back/forward navigation)
