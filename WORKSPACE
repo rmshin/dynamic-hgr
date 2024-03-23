@@ -56,10 +56,23 @@ load("@bazel_skylib//lib:versions.bzl", "versions")
 versions.check(minimum_bazel_version = "3.7.2")
 
 http_archive(
+    name = "build_bazel_apple_support",
+    sha256 = "a8ba6fd09d0ffeba9b5f398f3a46262470fe0addddb4ef5afa7eab18d001a7b0",
+    url = "https://github.com/bazelbuild/apple_support/releases/download/1.14.0/apple_support.1.14.0.tar.gz",
+)
+
+load(
+    "@build_bazel_apple_support//lib:repositories.bzl",
+    "apple_support_dependencies",
+)
+
+apple_support_dependencies()
+
+http_archive(
     name = "rules_cc",
-    strip_prefix = "rules_cc-2f8c04c04462ab83c545ab14c0da68c3b4c96191",
-# The commit can be updated if the build passes. Last updated 6/23/22.
-    urls = ["https://github.com/bazelbuild/rules_cc/archive/2f8c04c04462ab83c545ab14c0da68c3b4c96191.zip"],
+    strip_prefix = "rules_cc-0.0.9",
+    sha256 = "2037875b9a4456dce4a79d112a8ae885bbc4aad968e6587dca6e64f3a0900cdf",
+    urls = ["https://github.com/bazelbuild/rules_cc/releases/download/0.0.9/rules_cc-0.0.9.tar.gz"],
 )
 
 http_archive(

@@ -1,5 +1,5 @@
 build --cxxopt=-std=c++17
 build --host_cxxopt=-std=c++17
 # python path configs for MX Macs
-build --action_env PYTHON_BIN_PATH="/opt/homebrew/Cellar/python@3.12/3.12.0/bin/python3.12"
-build --action_env PYTHON_LIB_PATH="/opt/homebrew/lib/python3.12/site-packages"
+build --action_env PYTHON_BIN_PATH="/opt/homebrew/bin/python3"
+build --action_env PYTHON_LIB_PATH="/opt/homebrew/lib/python3.11/site-packages"
