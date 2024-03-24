@@ -1,4 +1,19 @@
-### Running hand tracking demo
+## Gesture-Controlled Desktop Cursor
+
+<img src="./examples/gesture-control-demo.gif" alt="camera-movement" width="250"/>
+
+This is a prototype system for controlling the desktop mouse cursor via hand gestures. It's built using Google's [MediaPipe](https://developers.google.com/mediapipe) library for real-time, on-device hand recognition, combined with a custom-trained feed-foward neural net for identifying gestures.
+
+Currently, only two main gestures are supported:
+
+<table>
+    <tr>
+        <td><img src="./examples/stop-gesture.png" alt="crab-example" height="150"/></td>
+        <td><img src="./examples/cursor-gesture.png" alt="crab-example" height="150"/></td>
+    </tr>
+</table>
+
+### Running hand tracking demo (MacOS)
 
 Build command:
 
